@@ -147,7 +147,6 @@ export function SierraLeonePrint() {
     <div className="print-only mx-auto max-w-3xl px-2 py-4 text-black">
       <h1 className="text-2xl font-extrabold">{t.meta.title} — {sl.title}</h1>
       <p className="mt-1 text-sm">{t.meta.cutoff}</p>
-      <p className="mt-2 rounded bg-amber-100 p-2 text-xs font-bold">{t.meta.entityWarning}</p>
       <h2 className="mb-2 mt-6 text-lg font-bold">{sl.profileTitle}</h2>
       <dl className="space-y-1 text-sm">
         {sl.profile.map((p) => (

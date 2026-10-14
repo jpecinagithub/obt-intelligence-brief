@@ -3,15 +3,15 @@ import { expect, test } from '@playwright/test';
 test('home loads with hero and all sections', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'OBT Intelligence Brief' }).first()).toBeVisible();
-  for (const id of ['resumen', 'historia', 'modelo-operativo', 'africa', 'gobierno', 'plantilla', 'finanzas', 'prensa', 'sierra-leona', 'fuentes']) {
+  for (const id of ['resumen', 'historia', 'modelo-operativo', 'africa', 'gobierno', 'plantilla', 'prensa', 'sierra-leona', 'fuentes']) {
     await expect(page.locator(`#${id}`)).toBeAttached();
   }
 });
 
-test('nav deep link scrolls to finance section', async ({ page }) => {
+test('nav deep link scrolls to press section', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: 'Finanzas 2021–2025' }).first().click();
-  await expect(page.locator('#finanzas')).toBeInViewport();
+  await page.getByRole('link', { name: 'Prensa y reputación' }).first().click();
+  await expect(page.locator('#prensa')).toBeInViewport();
 });
 
 test('language switch to English translates UI', async ({ page }) => {
@@ -36,13 +36,6 @@ test('africa map renders and country panel opens', async ({ page }) => {
   const svg = page.locator('#africa svg').first();
   await expect(svg).toBeVisible();
   await expect.poll(async () => await svg.locator('path').count(), { timeout: 10000 }).toBeGreaterThan(50);
-});
-
-test('finance year selection shows YoY deltas', async ({ page }) => {
-  await page.goto('/#finanzas');
-  await page.getByRole('button', { name: '2024', exact: true }).click();
-  await expect(page.getByText('Var. interanual').first()).toBeVisible();
-  await expect(page).toHaveURL(/fyear=2024/);
 });
 
 test('methodology page loads', async ({ page }) => {

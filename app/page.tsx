@@ -8,7 +8,6 @@ import Operating from '@/components/sections/Operating';
 import Africa from '@/components/sections/Africa';
 import Government from '@/components/sections/Government';
 import Workforce from '@/components/sections/Workforce';
-import Finance from '@/components/sections/Finance';
 import Press from '@/components/sections/Press';
 import SierraLeone, { SierraLeonePrint } from '@/components/sections/SierraLeone';
 import Sources from '@/components/sections/Sources';
@@ -21,7 +20,7 @@ function Footer() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <p className="text-sm font-bold text-white">{t.footer.author} · jpecina@gmail.com</p>
         <p className="detail-text mt-2 max-w-3xl text-xs text-slate-400">{t.footer.disclaimer}</p>
-        <p className="mt-2 text-xs text-slate-500">{t.footer.cutoff} · {t.meta.entityWarning}</p>
+        <p className="mt-2 text-xs text-slate-500">{t.footer.cutoff}</p>
       </div>
     </footer>
   );
@@ -40,7 +39,6 @@ export default function Page() {
           <Africa />
           <Government />
           <Workforce />
-          <Finance />
           <Press />
           <SierraLeone />
           <Sources />

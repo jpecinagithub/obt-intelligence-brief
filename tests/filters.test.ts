@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { filterByEvidence, filterCountries, filterPress, filterTimeline, globalSearch, searchSources } from '../lib/filters';
 import { es, countriesEs } from '../data/es';
+import { en, countriesEn } from '../data/en';
 import { sources } from '../data/sources';
 
 describe('filterByEvidence', () => {
@@ -68,5 +69,29 @@ describe('globalSearch', () => {
   });
   it('ignores queries shorter than 2 chars', () => {
     expect(globalSearch('a', data)).toHaveLength(0);
+  });
+});
+
+describe('dataset integrity', () => {
+  it('keeps both locales structurally aligned', () => {
+    expect(en.nav.sections.map((s: { id: string }) => s.id)).toEqual(es.nav.sections.map((s: { id: string }) => s.id));
+    expect(en.sierraLeone.tabs.map((t: { id: string }) => t.id)).toEqual(
+      es.sierraLeone.tabs.map((t: { id: string }) => t.id),
+    );
+  });
+  it('lists 34 countries per locale', () => {
+    expect(countriesEs).toHaveLength(34);
+    expect(countriesEn).toHaveLength(34);
+    expect(new Set(countriesEs.map((c) => c.id)).size).toBe(34);
+  });
+  it('has no dangling source references', () => {
+    const ids = new Set(sources.map((s) => s.id));
+    const refs = [
+      ...es.press.items.flatMap((i) => i.sourceIds),
+      ...en.press.items.flatMap((i) => i.sourceIds),
+      ...countriesEs.flatMap((c) => c.sourceIds),
+      ...countriesEn.flatMap((c) => c.sourceIds),
+    ];
+    for (const r of refs) expect(ids.has(r)).toBe(true);
   });
 });

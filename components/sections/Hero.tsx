@@ -27,9 +27,6 @@ export default function Hero() {
             </div>
           ))}
         </dl>
-        <p className="mt-6 max-w-3xl rounded-lg bg-amber-400/10 p-3 text-sm text-amber-200 ring-1 ring-amber-400/30">
-          {t.meta.entityWarning}
-        </p>
         <p className="mt-3 text-xs text-slate-400">{t.meta.cutoff}</p>
       </div>
     </header>

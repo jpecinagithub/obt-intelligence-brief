@@ -29,24 +29,6 @@ export interface CountryEntry {
   evidence: EvidenceLevel;
 }
 
-export interface FinancialYear {
-  year: number;
-  grossProfit: number;
-  ebit: number;
-  pretax: number;
-  netIncome: number;
-  equity: number;
-  assets: number;
-  debtExProvisions: number;
-  provisions: number;
-  totalLiabilities: number;
-  cash: number;
-  employees: number;
-  employeeConflict?: boolean;
-  solvency: number; // %
-  capitalIncrease?: number;
-}
-
 export interface TimelineEvent {
   year: number;
   title: string;
@@ -79,7 +61,7 @@ export interface RiskRow { risk: string; impact: string; mitigation: string }
 export interface Milestone { year: string; label: string; value: string; source: string; quality: string; evidence: EvidenceLevel; note?: string }
 
 export interface Dictionary {
-  meta: { title: string; tagline: string; cutoff: string; entity: string; entityWarning: string };
+  meta: { title: string; tagline: string; cutoff: string; entity: string };
   nav: { sections: { id: string; label: string }[]; searchPlaceholder: string; verifiedOnly: string; presentation: string; theme: string; language: string; methodology: string };
   ui: {
     evidence: Record<EvidenceLevel, string>;
@@ -88,9 +70,8 @@ export interface Dictionary {
     pressKind: Record<PressKind, string>;
     sources: string; source: string; year: string; viewMethodology: string; close: string;
     knownTitle: string; unknownTitle: string; trustTitle: string;
-    kdkk: string; eurNote: string; currencyDKK: string; currencyEUR: string;
     printReport: string; noResults: string; dataGap: string; seeEvidence: string;
-    all: string; yoy: string; tableView: string; chartView: string;
+    all: string; tableView: string; chartView: string;
   };
   hero: { kicker: string; title: string; subtitle: string; facts: Fact[] };
   summary: {
@@ -129,16 +110,6 @@ export interface Dictionary {
     orgTitle: string; orgBody: string;
     kpiTitle: string; kpis: string[];
     localTitle: string; localBody: string;
-  };
-  finance: {
-    title: string; banner: string;
-    labels: Record<string, string>;
-    years: FinancialYear[];
-    insightsTitle: string; insights: string[];
-    methodologyTitle: string; methodologyBody: string[];
-    reconciliationTitle: string; reconciliationBody: string[];
-    waterfallTitle: string; waterfallNote: string;
-    ndLabel: string; conflictNote: string;
   };
   press: {
     title: string; intro: string;
