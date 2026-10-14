@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-marine-950: #060f22;
+  --color-marine-900: #0a1c38;
+  --color-marine-800: #10294f;
+  --color-marine-700: #16407c;
+  --color-abyss-600: #0e7490;
+  --color-abyss-500: #06a3c2;
+  --color-abyss-400: #22c3e6;
+  --color-mist-100: #eef3f7;
+  --color-mist-200: #dde7ef;
+  --color-mist-300: #c3d2e0;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle container-grid texture for hero */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(148 163 184 / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(148 163 184 / 0.12) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Presentation mode: hide detail text, enlarge key visuals */
+.presentation .detail-text {
+  display: none !important;
+}
+.presentation .present-scale {
+  font-size: 1.15em;
+}
+
+/* Accessible focus */
+:focus-visible {
+  outline: 2px solid var(--color-abyss-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Chain animation */
+@keyframes dash-move {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+.chain-line {
+  stroke-dasharray: 7 7;
+  animation: dash-move 1.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chain-line {
+    animation: none;
+  }
+}
+
+/* Print: only the Sierra Leone report */
+@media print {
+  .print-hidden {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+.print-only {
+  display: none;
+}
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
